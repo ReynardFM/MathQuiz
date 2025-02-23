@@ -61,7 +61,7 @@ export default function Result() {
                 {activeSection === "all" && (
                     <div className="section">
                         <h2>All Questions and Answers</h2>
-                        {questions.map((question, index) => (
+                        {questions.length ? (questions.map((question, index) => (
                             <div
                                 key={index}
                                 className="result"
@@ -71,7 +71,10 @@ export default function Result() {
                                 <p><strong>Your Answer:</strong> {userAnswers[index] || "No answer"}</p>
                                 <p><strong>Correct Answer:</strong> {answers[index]}</p>
                             </div>
-                        ))}
+                        ))
+                    ):(
+                        <p>No answers.</p> // Display message if no answers
+                    )}
                     </div>
                 )}
 
