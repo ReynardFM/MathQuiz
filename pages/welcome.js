@@ -24,9 +24,7 @@ export default function Welcome() {
                 - Contains a button that links to the `/saveData` page using Next.js's `Link` component.
             */}
             <div className="difficulty">
-                <button>
-                    <Link href="/saveData">Get Started</Link>
-                </button>
+                    <Link href="/saveData"><button>Get Started</button></Link>
             </div>
 
             {/* 
