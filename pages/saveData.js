@@ -5,8 +5,8 @@ import Layout from "./layout";
 
 export default function SaveData() {
     const Router = useRouter();
-    const [name, setName] = useState("");
-    const [difficulty, setDifficulty] = useState("");
+    const [name, setName] = useState(""); // State for the user's name
+    const [difficulty, setDifficulty] = useState(""); // State for the selected difficulty
     const [error, setError] = useState(""); // State to track error messages
 
     // Event Handler for Saving Data and Navigating
@@ -34,10 +34,16 @@ export default function SaveData() {
 
     return (
         <div className="input">
-            {/* Layout Component */}
+            {/* 
+                Layout Component:
+                - Passes the current page (`router.pathname`) as a prop to the Layout component.
+            */}
             <Layout page={`${Router.pathname}`} />
 
-            {/* Form for User Input */}
+            {/* 
+                Form for User Input:
+                - Contains an input field for the user's name and buttons to select difficulty.
+            */}
             <form>
                 <label htmlFor="name">Enter your name: </label>
                 <input
@@ -51,12 +57,19 @@ export default function SaveData() {
                     }}
                     placeholder="Name"
                 />
-                {/* Display error message if name is empty */}
+                {/* 
+                    Display error message if name is empty:
+                
+                */}
                 {error && <p style={{ color: "red" }}>{error}</p>}
 
                 <p>Pick your difficulty:</p>
 
-                {/* Difficulty Buttons */}
+                {/* 
+                    Difficulty Buttons:
+                    - Buttons to select the difficulty level.
+                
+                */}
                 <div className="difficulty">
                     <button onClick={(e) => save(e, "easy")}>Easy</button>
                     <button onClick={(e) => save(e, "medium")}>Medium</button>
@@ -64,7 +77,11 @@ export default function SaveData() {
                 </div>
             </form>
 
-            {/* Footer Component */}
+            {/* 
+                Footer Component:
+                - Displays the footer at the bottom of the page.
+            
+            */}
             <Footer />
         </div>
     );

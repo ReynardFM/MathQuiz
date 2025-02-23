@@ -39,15 +39,15 @@ export default function Quiz({ name: propName, difficulty: propDifficulty }) {
     const Router = useRouter();
     const { name, difficulty } = Router.query; // Get name and difficulty from query parameters
 
-    const [questions, setQuestions] = useState([]);
-    const [answers, setAnswers] = useState([]);
-    const [userAnswers, setUserAnswers] = useState({}); // Use an object to store user answers
-    const [status, setStatus] = useState([]);
-    const [questionIndex, setQuestionIndex] = useState(0);
-    const [tempValue, setTemp] = useState("");
-    const [backgroundColor, setBackgroundColor] = useState("#e0e0e0");
-    const [button, setButton] = useState("Next");
-    const [answeredQuestions, setAnsweredQuestions] = useState([]);
+    const [questions, setQuestions] = useState([]); // State for storing questions
+    const [answers, setAnswers] = useState([]); // State for storing correct answers
+    const [userAnswers, setUserAnswers] = useState({}); // State for storing user answers
+    const [status, setStatus] = useState([]); // State for tracking correct/incorrect answers
+    const [questionIndex, setQuestionIndex] = useState(0); // State for tracking the current question index
+    const [tempValue, setTemp] = useState(""); // State for temporary input value
+    const [backgroundColor, setBackgroundColor] = useState("#e0e0e0"); // State for background color
+    const [button, setButton] = useState("Next"); // State for button text
+    const [answeredQuestions, setAnsweredQuestions] = useState([]); // State for tracking answered questions
 
     // Calculate score dynamically from the status array
     const score = status.filter((s) => s).length;
@@ -59,8 +59,9 @@ export default function Quiz({ name: propName, difficulty: propDifficulty }) {
         }
     }, [difficulty]);
 
-    useEffect(()=>{
-        if(answeredQuestions.length === questions.length && questions.length ){
+    // useEffect for Navigating to Result Page
+    useEffect(() => {
+        if (answeredQuestions.length === questions.length && questions.length) {
             Router.push({
                 pathname: "/result",
                 query: {
@@ -72,7 +73,7 @@ export default function Quiz({ name: propName, difficulty: propDifficulty }) {
                 },
             });
         }
-    },[answeredQuestions]);
+    }, [answeredQuestions]);
 
     // Function to Generate Questions
     function generateQuestion() {
@@ -146,10 +147,9 @@ export default function Quiz({ name: propName, difficulty: propDifficulty }) {
         // Mark the question as answered
         setAnsweredQuestions((prev) => [...prev, questionIndex]);
 
-
         if (questionIndex === questions.length - 1) {
             // Navigate to the Result page with data as query parameters
-            if(answeredQuestions.length === questions.length ){
+            if (answeredQuestions.length === questions.length) {
                 Router.push({
                     pathname: "/result",
                     query: {
@@ -162,18 +162,18 @@ export default function Quiz({ name: propName, difficulty: propDifficulty }) {
                 });
             } else {
                 let temp = 1;
-                while(answeredQuestions.includes(temp) && temp <= questions.length - 1){
+                while (answeredQuestions.includes(temp) && temp <= questions.length - 1) {
                     temp++;
                 }
                 setQuestionIndex(temp);
                 if (questionIndex === questions.length - 2) {
                     setButton("Finish");
-                }else{
+                } else {
                     setButton("Next");
                 }
             }
         } else {
-            if(answeredQuestions.length === questions.length ){
+            if (answeredQuestions.length === questions.length) {
                 Router.push({
                     pathname: "/result",
                     query: {
@@ -185,13 +185,13 @@ export default function Quiz({ name: propName, difficulty: propDifficulty }) {
                     },
                 });
             }
-            let temp = questionIndex+1;
-            while(answeredQuestions.includes(temp) && temp <= questions.length - 1){
+            let temp = questionIndex + 1;
+            while (answeredQuestions.includes(temp) && temp <= questions.length - 1) {
                 temp++;
-            } 
-            if (temp >= questions.length){
+            }
+            if (temp >= questions.length) {
                 temp = 1;
-                while(answeredQuestions.includes(temp) && temp <= questions.length - 1){
+                while (answeredQuestions.includes(temp) && temp <= questions.length - 1) {
                     temp++;
                 }
             }
@@ -213,7 +213,16 @@ export default function Quiz({ name: propName, difficulty: propDifficulty }) {
 
     return (
         <div className="quiz">
+            {/* 
+                Layout Component:
+                - Passes the current page (`router.pathname`) as a prop to the Layout component.
+            */}
             <Layout page={`${Router.pathname}`} />
+
+            {/* 
+                Header Section:
+                - Displays the quiz title, difficulty level, user name, and score.
+            */}
             <div className="header">
                 <h1>Arithmetic Quiz</h1>
                 <p>{String(difficulty).charAt(0).toUpperCase() + String(difficulty).slice(1)} Difficulty</p>
@@ -221,6 +230,10 @@ export default function Quiz({ name: propName, difficulty: propDifficulty }) {
                 <p>Score: {score}</p>
             </div>
 
+            {/* 
+                Content Section:
+                - Contains the QuestionList component and the current question with an input field.
+            */}
             <div className="content">
                 <QuestionList
                     questions={questions}
@@ -230,6 +243,10 @@ export default function Quiz({ name: propName, difficulty: propDifficulty }) {
                     status={status}
                 />
 
+                {/* 
+                    Current Question Section:
+                    - Displays the current question and an input field for the user's answer.
+                */}
                 <div className="question" style={{ backgroundColor }}>
                     {questions.length > 0 && (
                         <>
@@ -242,12 +259,20 @@ export default function Quiz({ name: propName, difficulty: propDifficulty }) {
                             />
                         </>
                     )}
+                    {/* 
+                        Navigation Buttons:
+                        - A button to navigate to the next question or finish the quiz.
+                    */}
                     <div className="navigation-buttons">
                         <button onClick={handleNextQuestion}>{button}</button>
                     </div>
                 </div>
             </div>
 
+            {/* 
+                Footer Component:
+                - Displays the footer at the bottom of the page.
+            */}
             <Footer />
         </div>
     );
