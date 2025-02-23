@@ -1,0 +1,166 @@
+
+div .welcome, .input{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh; 
+  text-align: center;
+}
+.input input{
+  width: 80%;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+div.welcome >h1{
+  color: #333;
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+
+.welcome >p {
+  color: #555;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.difficulty {
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  border-bottom: 1px solid lightgray;
+  background-color: #1B1F3B;
+  color: #FAFAFA;
+}
+.nav *,.question-list *{
+  display: inline;
+}
+
+.nav li, .question-list li{
+  margin: 20px;
+}
+
+.nav li :any-link{
+  color: #FAFAFA;
+  text-decoration: none;
+}
+
+.nav h1, .question-list h1{
+  margin-left: 20px;
+}
+
+.question-list {
+  margin-bottom:20px ;
+}
+
+button {
+  background-color: #007BFF;
+  color: white;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px); 
+}
+
+
+button:active {
+  background-color: #003d7a;
+  transform: translateY(2px);
+}
+
+.footer{
+  margin-top: 100px;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #555;
+  text-align: center;
+  background-color: white;
+}
+
+.footer :any-link{
+  color: #555;
+  text-decoration: none;
+}
+
+button :any-link{
+  color: white;
+  text-decoration: none;
+}
+
+.header {
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+}
+.header *{
+  margin: 10px;
+}
+.question {
+  width: 50%;
+  border-radius: 50px;
+  background: #e0e0e0;
+  height: fit-content;
+  padding: 20px;
+  box-shadow: 20px 20px 60px #bebebe,
+  -20px -20px 60px #ffffff;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.question input{
+  width: 80%;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.question p{
+  color: #555;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.result{
+  width: 200px; 
+  padding: 10px; 
+  margin: 10px 0; 
+  border-radius: 5px;
+}
+
+.result-message{
+  color: #555;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  margin-top: 95px;
+}
