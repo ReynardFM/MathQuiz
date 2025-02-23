@@ -161,7 +161,7 @@ export default function Quiz({ name: propName, difficulty: propDifficulty }) {
                     },
                 });
             } else {
-                let temp = 1;
+                let temp = 0;
                 while (answeredQuestions.includes(temp) && temp <= questions.length - 1) {
                     temp++;
                 }
@@ -190,7 +190,7 @@ export default function Quiz({ name: propName, difficulty: propDifficulty }) {
                 temp++;
             }
             if (temp >= questions.length) {
-                temp = 1;
+                temp = 0;
                 while (answeredQuestions.includes(temp) && temp <= questions.length - 1) {
                     temp++;
                 }
